@@ -21,12 +21,6 @@
             <version>5.7.0</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
@@ -62,6 +56,35 @@
 
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.5</version>
+                <executions>
+                    <execution>
+                        <id>check-coverage</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <rule implementation="org.jacoco.maven.RuleConfiguration">
+                                    <element>CLASS</element>
+                                    <limits>
+                                        <limit implementation="org.jacoco.report.check.Limit">
+                                            <counter>INSTRUCTION</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>1.0</minimum> <!-- Требуемое минимальное значение покрытия -->
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 </project>
